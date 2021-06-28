@@ -2,7 +2,7 @@ package class05_partition;
 
 import java.util.Stack;
 
-public class Code03_QuickSortRecursiveAndUnrecursive {
+public class Code02_QuickSortRecursiveAndUnrecursive {
 
 	// 荷兰国旗问题
 	public static int[] netherlandsFlag(int[] arr, int L, int R) {

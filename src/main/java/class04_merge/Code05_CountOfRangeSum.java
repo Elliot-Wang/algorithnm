@@ -1,8 +1,8 @@
-package class05_partition;
+package class04_merge;
 
 // 这道题直接在leetcode测评：
 // https://leetcode.com/problems/count-of-range-sum/
-public class Code01_CountOfRangeSum {
+public class Code05_CountOfRangeSum {
 
 	public static int countRangeSum(int[] nums, int lower, int upper) {
 		if (nums == null || nums.length == 0) {
@@ -39,6 +39,8 @@ public class Code01_CountOfRangeSum {
 			while (windowL <= M && arr[windowL] < min) {
 				windowL++;
 			}
+			// 遍历右组，依次获得左组中，
+			// 小于arr[i] - lower 且 大于arr[i] - upper的个数
 			ans += windowR - windowL;
 		}
 		long[] help = new long[R - L + 1];

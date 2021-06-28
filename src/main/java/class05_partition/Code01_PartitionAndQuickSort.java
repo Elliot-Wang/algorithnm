@@ -1,6 +1,6 @@
 package class05_partition;
 
-public class Code02_PartitionAndQuickSort {
+public class Code01_PartitionAndQuickSort {
 
 	public static void swap(int[] arr, int i, int j) {
 		int tmp = arr[i];
@@ -30,6 +30,8 @@ public class Code02_PartitionAndQuickSort {
 		return lessEqual;
 	}
 
+	// 荷兰国旗问题：对一组随机的红、白、蓝小球进行排序，求划分边界（白球的左右界）
+	// 
 	// arr[L...R] 玩荷兰国旗问题的划分，以arr[R]做划分值
 	// <arr[R] ==arr[R] > arr[R]
 	public static int[] netherlandsFlag(int[] arr, int L, int R) {
@@ -39,25 +41,28 @@ public class Code02_PartitionAndQuickSort {
 		if (L == R) {
 			return new int[] { L, R };
 		}
-		int less = L - 1; // < 区 右边界
-		int more = R; // > 区 左边界
-		int index = L;
+		int less = L - 1;      // < 区 右边界（包含）
+		int more = R;          // > 区 左边界（包含）
+		int index = L;         // = 区 右边界（包含）
 		while (index < more) { // 当前位置，不能和 >区的左边界撞上
 			if (arr[index] == arr[R]) {
 				index++;
 			} else if (arr[index] < arr[R]) {
-//				swap(arr, less + 1, index);
-//				less++;
-//				index++;						
 				swap(arr, index++, ++less);
-			} else { // >
+			} else {
 				swap(arr, index, --more);
 			}
 		}
-		swap(arr, more, R); // <[R]   =[R]   >[R]
+		// = 区借了 > 区的位置R，最后要交还
+		swap(arr, more, R);
 		return new int[] { less + 1, more };
 	}
 
+	/**
+	 * 快排实现1
+	 * 利用partition过程
+	 * @param arr
+	 */
 	public static void quickSort1(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -65,6 +70,9 @@ public class Code02_PartitionAndQuickSort {
 		process1(arr, 0, arr.length - 1);
 	}
 
+	// 快排的思路和归并相反。
+	// 归并是先递归获得两个有序子组，然后merge
+	// 快排是先partition获得两个小大子组，然后再递归处理小大子组
 	public static void process1(int[] arr, int L, int R) {
 		if (L >= R) {
 			return;
@@ -74,12 +82,13 @@ public class Code02_PartitionAndQuickSort {
 		process1(arr, L, M - 1);
 		process1(arr, M + 1, R);
 	}
+	
 
-	
-	
-	
-	
-	
+	/**
+	 * 快排实现2
+	 * 利用荷兰国旗算法
+	 * @param arr
+	 */
 	public static void quickSort2(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
@@ -99,11 +108,11 @@ public class Code02_PartitionAndQuickSort {
 	}
 
 	
-	
-	
-	
-	
-	
+	/**
+	 * 快排实现3
+	 * 随机快排，随机取中间值
+	 * @param arr
+	 */
 	public static void quickSort3(int[] arr) {
 		if (arr == null || arr.length < 2) {
 			return;
