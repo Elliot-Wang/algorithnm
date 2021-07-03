@@ -7,8 +7,6 @@ import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
-import com.mashibing.CountSort;
-
 class CountSortTest {
 	
 	int[] generateRandomArray() {

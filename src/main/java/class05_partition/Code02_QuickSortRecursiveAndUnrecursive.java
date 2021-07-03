@@ -143,7 +143,7 @@ public class Code02_QuickSortRecursiveAndUnrecursive {
 
 	// 跑大样本随机测试（对数器）
 	public static void main(String[] args) {
-		int testTime = 500000;
+		int testTime = 50_0000;
 		int maxSize = 100;
 		int maxValue = 100;
 		boolean succeed = true;
