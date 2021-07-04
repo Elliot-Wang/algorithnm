@@ -1,9 +1,13 @@
-package class07;
+package class07_heap;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ * 线段交叉问题
+ * 有一堆以整数为端点的线段，求它们之间的重合次数（不包括点重合）
+ */
 public class Code01_CoverMax {
 
 	public static int maxCover1(int[][] lines) {
