@@ -1,10 +1,16 @@
-package class07;
+package class07_heap;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * 购物实时榜单
+ * 每个人（ID）都可以执行买和退操作（可多次）
+ * 实时给出买入最多的TOP k榜单
+ * TODO 不懂
+ */
 public class Code02_EveryStepShowBoss {
 
 	public static class Customer {
@@ -39,13 +45,13 @@ public class Code02_EveryStepShowBoss {
 
 	public static class WhosYourDaddy {
 		private HashMap<Integer, Customer> customers;
-		private HeapGreater<Customer> candHeap;
+		private HeapGreater<Customer> candyHeap;
 		private HeapGreater<Customer> daddyHeap;
 		private final int daddyLimit;
 
 		public WhosYourDaddy(int limit) {
 			customers = new HashMap<Integer, Customer>();
-			candHeap = new HeapGreater<>(new CandidateComparator());
+			candyHeap = new HeapGreater<>(new CandidateComparator());
 			daddyHeap = new HeapGreater<>(new DaddyComparator());
 			daddyLimit = limit;
 		}
@@ -53,11 +59,13 @@ public class Code02_EveryStepShowBoss {
 		// 当前处理i号事件，arr[i] -> id,  buyOrRefund
 		public void operate(int time, int id, boolean buyOrRefund) {
 			if (!buyOrRefund && !customers.containsKey(id)) {
+                // 购买数为零，还来退款的，不管
 				return;
-			}
-			if (!customers.containsKey(id)) {
+			} else if (!customers.containsKey(id)) {
+			    // 有购买量，进入顾客名单
 				customers.put(id, new Customer(id, 0, 0));
 			}
+            // 顾客名单的购买量调整
 			Customer c = customers.get(id);
 			if (buyOrRefund) {
 				c.buy++;
@@ -67,19 +75,21 @@ public class Code02_EveryStepShowBoss {
 			if (c.buy == 0) {
 				customers.remove(id);
 			}
-			if (!candHeap.contains(c) && !daddyHeap.contains(c)) {
+			// 处理购买榜单的顾客名单
+			if (!candyHeap.contains(c) && !daddyHeap.contains(c)) {
+			    // 新顾客
 				if (daddyHeap.size() < daddyLimit) {
 					c.enterTime = time;
 					daddyHeap.push(c);
 				} else {
 					c.enterTime = time;
-					candHeap.push(c);
+					candyHeap.push(c);
 				}
-			} else if (candHeap.contains(c)) {
+			} else if (candyHeap.contains(c)) {
 				if (c.buy == 0) {
-					candHeap.remove(c);
+					candyHeap.remove(c);
 				} else {
-					candHeap.resign(c);
+					candyHeap.resign(c);
 				}
 			} else {
 				if (c.buy == 0) {
@@ -101,21 +111,21 @@ public class Code02_EveryStepShowBoss {
 		}
 
 		private void daddyMove(int time) {
-			if (candHeap.isEmpty()) {
+			if (candyHeap.isEmpty()) {
 				return;
 			}
 			if (daddyHeap.size() < daddyLimit) {
-				Customer p = candHeap.pop();
+				Customer p = candyHeap.pop();
 				p.enterTime = time;
 				daddyHeap.push(p);
 			} else {
-				if (candHeap.peek().buy > daddyHeap.peek().buy) {
+				if (candyHeap.peek().buy > daddyHeap.peek().buy) {
 					Customer oldDaddy = daddyHeap.pop();
-					Customer newDaddy = candHeap.pop();
+					Customer newDaddy = candyHeap.pop();
 					oldDaddy.enterTime = time;
 					newDaddy.enterTime = time;
 					daddyHeap.push(newDaddy);
-					candHeap.push(oldDaddy);
+					candyHeap.push(oldDaddy);
 				}
 			}
 		}
