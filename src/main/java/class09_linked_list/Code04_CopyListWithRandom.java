@@ -1,7 +1,11 @@
-package class09;
+package class09_linked_list;
 
 import java.util.HashMap;
 
+/**
+ * 复制具有随机指针的链表
+ * 有容器（map）非常简单，但是链表要求不用容器
+ */
 public class Code04_CopyListWithRandom {
 
 	public static class Node {

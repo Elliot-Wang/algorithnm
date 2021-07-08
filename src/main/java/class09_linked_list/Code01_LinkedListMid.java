@@ -1,7 +1,10 @@
-package class09;
+package class09_linked_list;
 
 import java.util.ArrayList;
 
+/**
+ * 求链表中点
+ */
 public class Code01_LinkedListMid {
 
 	public static class Node {

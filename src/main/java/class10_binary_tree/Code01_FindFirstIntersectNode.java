@@ -1,5 +1,16 @@
-package class10;
+package class10_binary_tree;
 
+/**
+ * 找到有环链表的入环节点
+ * 
+ * > 利用有趣的快慢指针
+ * 
+ * 假设非环节点 M个，环节点 N个
+ * 快慢指针相遇之时，x = 2x - N 
+ * => x = N
+ * 即，再走M步，便能到达入环节点
+ * M步未知，可是让一个节点回到原点，两指针同时走便能同时达到入环节点
+ */
 public class Code01_FindFirstIntersectNode {
 
 	public static class Node {

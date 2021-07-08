@@ -1,7 +1,10 @@
-package class08;
+package class08_trie_tree;
 
 import java.util.Arrays;
 
+/**
+ * 计数排序，桶排序
+ */
 public class Code03_CountSort {
 
 	// only for 0~200 value

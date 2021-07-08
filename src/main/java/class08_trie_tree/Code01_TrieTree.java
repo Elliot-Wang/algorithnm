@@ -1,4 +1,4 @@
-package class08;
+package class08_trie_tree;
 
 import java.util.HashMap;
 

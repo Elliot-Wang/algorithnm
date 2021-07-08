@@ -1,7 +1,12 @@
-package class10;
+package class10_binary_tree;
 
 import java.util.Stack;
 
+/**
+ * 非递归遍历二叉树
+ * 关键在于，能够使用非遍历的算法
+ * TODO 多看一看
+ */
 public class Code03_UnRecursiveTraversalBT {
 
 	public static class Node {
@@ -14,6 +19,9 @@ public class Code03_UnRecursiveTraversalBT {
 		}
 	}
 
+	// 前序遍历
+	// 压栈次序却是，先右，后左，出栈顺序才能正确
+	// 因为递归中，是先左，后右
 	public static void pre(Node head) {
 		System.out.print("pre-order: ");
 		if (head != null) {
@@ -33,6 +41,7 @@ public class Code03_UnRecursiveTraversalBT {
 		System.out.println();
 	}
 
+	// 中序遍历
 	public static void in(Node cur) {
 		System.out.print("in-order: ");
 		if (cur != null) {
@@ -51,6 +60,7 @@ public class Code03_UnRecursiveTraversalBT {
 		System.out.println();
 	}
 
+	// 后序遍历
 	public static void pos1(Node head) {
 		System.out.print("pos-order: ");
 		if (head != null) {
@@ -75,6 +85,7 @@ public class Code03_UnRecursiveTraversalBT {
 		System.out.println();
 	}
 
+	// 后序遍历
 	public static void pos2(Node h) {
 		System.out.print("pos-order: ");
 		if (h != null) {

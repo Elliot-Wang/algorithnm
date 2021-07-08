@@ -1,9 +1,12 @@
-package class11;
+package class11_binary_tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+/**
+ * 序列化二叉树，打印出节点数值和null
+ */
 public class Code02_SerializeAndReconstructTree {
     /*
      * 二叉树可以通过先序、后序或者按层遍历的方式序列化和反序列化，

@@ -1,4 +1,4 @@
-package class11;
+package class11_binary_tree;
 
 public class Code06_SuccessorNode {
 

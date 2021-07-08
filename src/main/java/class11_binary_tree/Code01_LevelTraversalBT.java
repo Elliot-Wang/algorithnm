@@ -1,8 +1,11 @@
-package class11;
+package class11_binary_tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * 水平遍历二叉树
+ */
 public class Code01_LevelTraversalBT {
 
 	public static class Node {

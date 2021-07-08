@@ -1,5 +1,10 @@
-package class09;
+package class09_linked_list;
 
+/**
+ * 利用链表实现荷兰国旗问题
+ * 小于、等于、大于，三个链表最后需要合并
+ * 三个区可能有两个区是null，故而在拼接的时候需要注意条件
+ */
 public class Code03_SmallerEqualBigger {
 
 	public static class Node {

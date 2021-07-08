@@ -1,7 +1,10 @@
-package class09;
+package class09_linked_list;
 
 import java.util.Stack;
 
+/**
+ * 链表是否有环
+ */
 public class Code02_IsPalindromeList {
 
 	public static class Node {
