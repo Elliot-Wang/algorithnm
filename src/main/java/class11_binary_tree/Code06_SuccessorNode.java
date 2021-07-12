@@ -1,5 +1,9 @@
 package class11_binary_tree;
 
+/**
+ * 寻找后继节点（中序遍历）
+ * 中序遍历的后继节点要简单得多
+ */
 public class Code06_SuccessorNode {
 
 	public static class Node {

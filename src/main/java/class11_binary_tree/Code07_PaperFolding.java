@@ -1,5 +1,9 @@
 package class11_binary_tree;
 
+/**
+ * 有趣的折纸问题，其实并不难
+ * 但是左老师直接利用递归就能给出结果，太强了！
+ */
 public class Code07_PaperFolding {
 
 	public static void printAllFolds(int N) {
@@ -16,8 +20,10 @@ public class Code07_PaperFolding {
 		if (i > N) {
 			return;
 		}
+		// 左子必为凹
 		process(i + 1, N, true);
 		System.out.print(down ? "凹 " : "凸 ");
+		// 右子必为凸
 		process(i + 1, N, false);
 	}
 
