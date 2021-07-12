@@ -1,4 +1,4 @@
-package class17_graph;
+package class17_recurse;
 
 import java.util.Stack;
 
@@ -128,7 +128,7 @@ public class Code02_Hanoi {
 	}
 
 	public static void main(String[] args) {
-		int n = 3;
+		int n = 4;
 		hanoi1(n);
 		System.out.println("============");
 		hanoi2(n);

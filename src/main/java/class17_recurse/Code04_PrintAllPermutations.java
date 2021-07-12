@@ -1,4 +1,4 @@
-package class17_graph;
+package class17_recurse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +20,12 @@ public class Code04_PrintAllPermutations {
 		return ans;
 	}
 
+    /**
+     * 不太好的一个递归版本，参数设置不够好
+     * @param rest 剩余的字符串
+     * @param path 已经生成的字符串
+     * @param ans 生成字符串的列表
+     */
 	public static void f(ArrayList<Character> rest, String path, List<String> ans) {
 		if (rest.isEmpty()) {
 			ans.add(path);
@@ -29,6 +35,7 @@ public class Code04_PrintAllPermutations {
 				char cur = rest.get(i);
 				rest.remove(i);
 				f(rest, path + cur, ans);
+				// 记得恢复现场
 				rest.add(i, cur);
 			}
 		}
@@ -44,6 +51,12 @@ public class Code04_PrintAllPermutations {
 		return ans;
 	}
 
+    /**
+     * 感觉像是遍历所有的逆序对情况，而得到所有的组合结果
+     * @param str 被操作的数组
+     * @param index 操作位
+     * @param ans 结果列表
+     */
 	public static void g1(char[] str, int index, List<String> ans) {
 		if (index == str.length) {
 			ans.add(String.valueOf(str));
@@ -51,6 +64,7 @@ public class Code04_PrintAllPermutations {
 			for (int i = index; i < str.length; i++) {
 				swap(str, index, i);
 				g1(str, index + 1, ans);
+				// 恢复现场
 				swap(str, index, i);
 			}
 		}
@@ -66,10 +80,17 @@ public class Code04_PrintAllPermutations {
 		return ans;
 	}
 
+    /**
+     * 去重版本，组合字符串当中不使用重复的字符
+     * @param str 被操作的数组
+     * @param index 操作位
+     * @param ans 结果列表
+     */
 	public static void g2(char[] str, int index, List<String> ans) {
 		if (index == str.length) {
 			ans.add(String.valueOf(str));
 		} else {
+		    // 不使用已经用过的字符来进行组合
 			boolean[] visited = new boolean[256];
 			for (int i = index; i < str.length; i++) {
 				if (!visited[str[i]]) {

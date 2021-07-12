@@ -1,7 +1,11 @@
-package class17_graph;
+package class17_recurse;
 
 import java.util.Stack;
 
+/**
+ * 不借助其它容器，只使用递归结构，逆序一个栈
+ * 需要用到两个递归函数
+ */
 public class Code05_ReverseStackUsingRecursive {
 
 	public static void reverse(Stack<Integer> stack) {

@@ -1,9 +1,13 @@
-package class17_graph;
+package class17_recurse;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * 子序列
+ * 一个字符串中所有字符的组合（可跳跃，但顺序不能变）
+ */
 public class Code03_PrintAllSubsquences {
 
 	// s -> "abc" ->

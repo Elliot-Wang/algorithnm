@@ -1,4 +1,4 @@
-package class17_graph;
+package class17_recurse;
 
 public class Edge {
 	public int weight;
