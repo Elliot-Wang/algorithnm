@@ -1,5 +1,9 @@
 package class20;
 
+/**
+ * 象棋中的马的走法问题
+ * 从(0, 0)到(9, 8)，规定只能走N步。有几种走法
+ */
 public class Code02_HorseJump {
 
 	// 当前来到的位置是（x,y）
@@ -11,12 +15,15 @@ public class Code02_HorseJump {
 	}
 
 	public static int process(int x, int y, int rest, int a, int b) {
+	    // 越界
 		if (x < 0 || x > 9 || y < 0 || y > 8) {
 			return 0;
 		}
+		// 步数用尽
 		if (rest == 0) {
 			return (x == a && y == b) ? 1 : 0;
 		}
+		// 8种可能走法
 		int ways = process(x + 2, y + 1, rest - 1, a, b);
 		ways += process(x + 1, y + 2, rest - 1, a, b);
 		ways += process(x - 1, y + 2, rest - 1, a, b);
@@ -28,6 +35,15 @@ public class Code02_HorseJump {
 		return ways;
 	}
 
+    /**
+     * 这个dp表的大小是三维的
+     * 一维时间，两维空间
+     * 然后依旧需要使用递归
+     * @param a 目标点
+     * @param b 目标点
+     * @param k 规定步数
+     * @return 可能走法
+     */
 	public static int dp(int a, int b, int k) {
 		int[][][] dp = new int[10][9][k + 1];
 		dp[a][b][0] = 1;

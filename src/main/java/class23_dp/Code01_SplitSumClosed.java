@@ -1,4 +1,4 @@
-package class23;
+package class23_dp;
 
 public class Code01_SplitSumClosed {
 

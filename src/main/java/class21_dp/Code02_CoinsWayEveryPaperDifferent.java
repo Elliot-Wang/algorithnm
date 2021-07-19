@@ -1,4 +1,4 @@
-package class21;
+package class21_dp;
 
 public class Code02_CoinsWayEveryPaperDifferent {
 

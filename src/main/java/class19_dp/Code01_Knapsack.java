@@ -1,4 +1,4 @@
-package class19;
+package class19_dp;
 
 public class Code01_Knapsack {
 
@@ -6,6 +6,7 @@ public class Code01_Knapsack {
 	// 为了方便，其中没有负数
 	// bag背包容量，不能超过这个载重
 	// 返回：不超重的情况下，能够得到的最大价值
+    // 非常经典的动态规划题目
 	public static int maxValue(int[] w, int[] v, int bag) {
 		if (w == null || v == null || w.length != v.length || w.length == 0) {
 			return 0;

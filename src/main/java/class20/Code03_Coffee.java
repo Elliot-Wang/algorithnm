@@ -12,6 +12,10 @@ import java.util.PriorityQueue;
 // 洗杯子的机器洗完一个杯子时间为a，任何一个杯子自然挥发干净的时间为b。
 // 四个参数：arr, n, a, b
 // 假设时间点从0开始，返回所有人喝完咖啡并洗完咖啡杯的全部过程结束后，至少来到什么时间点。
+//
+// 完全不同的一个dp模型
+// 首先考虑如何最快的喝完咖啡，然后考虑如何最快的洗完咖啡
+// 第一步喝完咖啡，需要记录喝完咖啡的时间点，以便给第二步使用
 public class Code03_Coffee {
 
 	// 验证的方法
@@ -69,7 +73,6 @@ public class Code03_Coffee {
 	}
 
 	public static class MachineComparator implements Comparator<Machine> {
-
 		@Override
 		public int compare(Machine o1, Machine o2) {
 			return (o1.timePoint + o1.workTime) - (o2.timePoint + o2.workTime);
@@ -78,11 +81,14 @@ public class Code03_Coffee {
 	}
 
 	// 优良一点的暴力尝试的方法
+    // 利用小根堆+贪心算法得到快速喝完咖啡的时间
+    // 利用暴力递归获得洗完咖啡杯的时间
+    // drinks是排序过的
 	public static int minTime1(int[] arr, int n, int a, int b) {
 		PriorityQueue<Machine> heap = new PriorityQueue<Machine>(new MachineComparator());
-		for (int i = 0; i < arr.length; i++) {
-			heap.add(new Machine(0, arr[i]));
-		}
+        for (int value : arr) {
+            heap.add(new Machine(0, value));
+        }
 		int[] drinks = new int[n];
 		for (int i = 0; i < n; i++) {
 			Machine cur = heap.poll();
@@ -93,11 +99,15 @@ public class Code03_Coffee {
 		return bestTime(drinks, a, b, 0, 0);
 	}
 
-	// drinks 所有杯子可以开始洗的时间
-	// wash 单杯洗干净的时间（串行）
-	// air 挥发干净的时间(并行)
-	// free 洗的机器什么时候可用
-	// drinks[index.....]都变干净，最早的结束时间（返回）
+    /**
+     * drinks[index.....]都变干净，最早的结束时间（返回）
+     * @param drinks 所有杯子可以开始洗的时间
+     * @param wash 单杯洗干净的时间（串行）
+     * @param air 挥发干净的时间(并行)
+     * @param index 序号
+     * @param free 洗的机器什么时候可用
+     * @return 所有杯子洗完的时间
+     */
 	public static int bestTime(int[] drinks, int wash, int air, int index, int free) {
 		if (index == drinks.length) {
 			return 0;
@@ -130,13 +140,25 @@ public class Code03_Coffee {
 		return bestTimeDp(drinks, a, b);
 	}
 
+    /**
+     * 洗杯子使用动态规划
+     * 又是一道新的dp表
+     *
+     * 假设洗杯子时间为3
+     * 0 |___O--X
+     * 1 |______O--X
+     * 2 |_________O--X
+     *
+     */
 	public static int bestTimeDp(int[] drinks, int wash, int air) {
 		int N = drinks.length;
+		// 所有杯子都去洗的时间
 		int maxFree = 0;
-		for (int i = 0; i < drinks.length; i++) {
-			maxFree = Math.max(maxFree, drinks[i]) + wash;
-		}
+        for (int drink : drinks) {
+            maxFree = Math.max(maxFree, drink) + wash;
+        }
 		int[][] dp = new int[N + 1][maxFree + 1];
+        // dp[N][...] 是虚拟行，全部为零。相当于边界条件
 		for (int index = N - 1; index >= 0; index--) {
 			for (int free = 0; free <= maxFree; free++) {
 				int selfClean1 = Math.max(drinks[index], free) + wash;

@@ -1,5 +1,10 @@
-package class21;
+package class21_dp;
 
+// 走格子问题
+// 走过路径的和最小
+// 经典的二维dp表格
+// 动态规划向来有两种方法，一个从起点慢慢出发，一个从终点慢慢来到起点
+// 经典的dp题目，但是本次课的重点在于不断优化dp表空间
 public class Code01_MinPathSum {
 
 	public static int minPathSum1(int[][] m) {

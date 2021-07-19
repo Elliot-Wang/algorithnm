@@ -1,9 +1,13 @@
-package class24;
+package class24_sliding_windows;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.LinkedList;
 
+/**
+ * arr是货币数组，其中的值都是正数。再给定一个正数aim。
+ * 每个值都认为是一张货币，返回组成aim的最少货币数
+ */
 public class Code04_MinCoinsOnePaper {
 
 	public static int minCoins(int[] arr, int aim) {

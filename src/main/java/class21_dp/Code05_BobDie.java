@@ -1,7 +1,16 @@
-package class21;
+package class21_dp;
 
 public class Code05_BobDie {
 
+    /**
+     *
+     * @param row 起始坐标，行
+     * @param col 起始坐标，列
+     * @param k 行走步数
+     * @param N 边界宽
+     * @param M 边界长
+     * @return 不出界的概率
+     */
 	public static double livePosibility1(int row, int col, int k, int N, int M) {
 		return (double) process(row, col, k, N, M) / Math.pow(4, k);
 	}

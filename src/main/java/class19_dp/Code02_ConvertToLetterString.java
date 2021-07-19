@@ -1,9 +1,10 @@
-package class19;
+package class19_dp;
 
 public class Code02_ConvertToLetterString {
 
 	// str只含有数字字符0~9
 	// 返回多少种转化方案
+    // 暴力穷举比较好想到，dp表也简单
 	public static int number(String str) {
 		if (str == null || str.length() == 0) {
 			return 0;

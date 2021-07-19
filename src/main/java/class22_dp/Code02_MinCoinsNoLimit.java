@@ -1,4 +1,4 @@
-package class22;
+package class22_dp;
 
 public class Code02_MinCoinsNoLimit {
 
@@ -62,7 +62,7 @@ public class Code02_MinCoinsNoLimit {
 		for (int index = N - 1; index >= 0; index--) {
 			for (int rest = 0; rest <= aim; rest++) {
 				dp[index][rest] = dp[index + 1][rest];
-				if (rest - arr[index] >= 0 
+				if (rest - arr[index] >= 0
 						&& dp[index][rest - arr[index]] != Integer.MAX_VALUE) {
 					dp[index][rest] = Math.min(dp[index][rest], dp[index][rest - arr[index]] + 1);
 				}

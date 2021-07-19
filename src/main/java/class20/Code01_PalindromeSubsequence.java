@@ -1,6 +1,7 @@
 package class20;
 
 // 测试链接：https://leetcode.com/problems/longest-palindromic-subsequence/
+// 最长回文子序列
 public class Code01_PalindromeSubsequence {
 
 	public static int lpsl1(String s) {
@@ -19,13 +20,24 @@ public class Code01_PalindromeSubsequence {
 		if (L == R - 1) {
 			return str[L] == str[R] ? 2 : 1;
 		}
+		// 回文边界移动的四种情况
+        // 左右边界向内移动
 		int p1 = f(str, L + 1, R - 1);
+        // 右边界向内移动
 		int p2 = f(str, L, R - 1);
+        // 左边界向内移动
 		int p3 = f(str, L + 1, R);
+        // 左右边界向内移动，并把当前边界考虑进子序列中
+        // 非常重要的操作
 		int p4 = str[L] != str[R] ? 0 : (2 + f(str, L + 1, R - 1));
 		return Math.max(Math.max(p1, p2), Math.max(p3, p4));
 	}
 
+    /**
+     * 归纳出base case在dp表上的计算规则
+     * @param s
+     * @return
+     */
 	public static int lpsl2(String s) {
 		if (s == null || s.length() == 0) {
 			return 0;
@@ -33,11 +45,13 @@ public class Code01_PalindromeSubsequence {
 		char[] str = s.toCharArray();
 		int N = str.length;
 		int[][] dp = new int[N][N];
+		// base case
 		dp[N - 1][N - 1] = 1;
 		for (int i = 0; i < N - 1; i++) {
 			dp[i][i] = 1;
 			dp[i][i + 1] = str[i] == str[i + 1] ? 2 : 1;
 		}
+		// deduce other
 		for (int L = N - 3; L >= 0; L--) {
 			for (int R = L + 2; R < N; R++) {
 				dp[L][R] = Math.max(dp[L][R - 1], dp[L + 1][R]);

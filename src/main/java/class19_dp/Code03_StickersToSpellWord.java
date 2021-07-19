@@ -1,8 +1,9 @@
-package class19;
+package class19_dp;
 
 import java.util.HashMap;
 
 // 本题测试链接：https://leetcode.com/problems/stickers-to-spell-word
+// 缓存表有意思，不是一维或者二维数组结构，而是map表
 public class Code03_StickersToSpellWord {
 
 	public static int minStickers1(String[] stickers, String target) {

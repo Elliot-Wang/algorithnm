@@ -1,7 +1,13 @@
-package class24;
+package class24_sliding_windows;
 
 import java.util.LinkedList;
 
+/**
+ * 假设一个固定大小为W的窗口，依次划过arr，
+ * 返回每一次滑出状况的最大值
+ *
+ * 该题目就是为了证明滑动窗口-双端队列结构的优势，O(0)获得最值
+ */
 public class Code01_SlidingWindowMaxArray {
 
 	// 暴力的对数器方法
