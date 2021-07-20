@@ -1,4 +1,4 @@
-package class20;
+package class20_dp;
 
 /**
  * 象棋中的马的走法问题

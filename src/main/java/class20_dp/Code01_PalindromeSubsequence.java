@@ -1,4 +1,4 @@
-package class20;
+package class20_dp;
 
 // 测试链接：https://leetcode.com/problems/longest-palindromic-subsequence/
 // 最长回文子序列
